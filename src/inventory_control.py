@@ -52,13 +52,13 @@ class InventoryControl:
         for dish, ingredients in self.INGREDIENTS.items():
             available = True
 
-            for ingredient in ingredients:
-                if self.inventory[ingredient] < self.MINIMUM_INVENTORY[ingredient]:
+            for i in ingredients:
+                if self.inventory[i] < self.MINIMUM_INVENTORY[i]:
                     continue
                 else:
                     available = False
                     break
-                
+
             if available:
                 available_dishes.add(dish)
 
