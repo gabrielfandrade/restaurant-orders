@@ -45,3 +45,21 @@ class InventoryControl:
 
     def get_quantities_to_buy(self):
         return self.inventory
+
+    def get_available_dishes(self):
+        available_dishes = set()
+
+        for dish, ingredients in self.INGREDIENTS.items():
+            available = True
+
+            for ingredient in ingredients:
+                if self.inventory[ingredient] < self.MINIMUM_INVENTORY[ingredient]:
+                    continue
+                else:
+                    available = False
+                    break
+                
+            if available:
+                available_dishes.add(dish)
+
+        return available_dishes
