@@ -12,10 +12,15 @@ def analyze_log(path_to_file: str):
 
     joao_never_went = never_went(orders, 'joao')
 
-    logs = [maria_eats, arnaldo_ask_hamburguer, joao_never_ask, joao_never_went]
+    logs = [
+        maria_eats,
+        arnaldo_ask_hamburguer,
+        joao_never_ask,
+        joao_never_went
+    ]
 
     txt_write(logs)
-        
+
 
 def csv_importer(path_to_file: str):
     if not path_to_file.endswith('.csv'):
@@ -23,7 +28,7 @@ def csv_importer(path_to_file: str):
     else:
         try:
             with open(path_to_file) as file:
-                reader = csv.reader(file, delimiter=",",quotechar='"')
+                reader = csv.reader(file, delimiter=",", quotechar='"')
 
                 _, *data = reader
 
@@ -45,7 +50,7 @@ def csv_importer(path_to_file: str):
 
 def eats(orders: list, client: str):
     items = items_ordered(orders, client)
-    
+
     most_eat = max(items, key=items.get)
 
     return most_eat
@@ -60,7 +65,8 @@ def ask_hamburguer(orders: list, client: str):
 
 
 def never_ask(orders: list, client: str):
-    orders_filtered = list(filter(lambda order: order['client'] == client, orders))
+    orders_filtered = list(filter(
+        lambda order: order['client'] == client, orders))
 
     menu = set()
 
@@ -74,7 +80,8 @@ def never_ask(orders: list, client: str):
 
 
 def never_went(orders: list, client: str):
-    orders_filtered = list(filter(lambda order: order['client'] == client, orders))
+    orders_filtered = list(filter(
+        lambda order: order['client'] == client, orders))
 
     days = set()
 
@@ -88,7 +95,8 @@ def never_went(orders: list, client: str):
 
 
 def items_ordered(orders: list, client: str):
-    orders_filtered = list(filter(lambda order: order['client'] == client, orders))
+    orders_filtered = list(filter(
+        lambda order: order['client'] == client, orders))
 
     items_ordered = dict()
 
